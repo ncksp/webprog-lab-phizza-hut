@@ -12,14 +12,14 @@ use Ramsey\Uuid\Uuid;
 class TransactionController extends Controller
 {
     public function history()
-    { 
+    {
         //untuk transaction Detail
         $userId = Auth::user()->id;
 
         $histories = DB::table('transactions')
-        ->selectRaw('DISTINCT transaction_id, created_at')
-        ->where('user_id', $userId)
-        ->get();
+            ->selectRaw('DISTINCT transaction_id, created_at')
+            ->where('user_id', $userId)
+            ->get();
 
         return view('pages.history', compact('histories'));
     }
@@ -28,9 +28,9 @@ class TransactionController extends Controller
     {
         //avoiding (2n)+1 problem
         $histories = Transaction::with('pizza', 'user')
-        ->where('transaction_id', $id)->get();
+            ->where('transaction_id', $id)->get();
 
-        return view('pages.history-detail', compact('histories'));
+        return view('pages.transaction-detail', compact('histories'));
     }
 
     public function store()
@@ -57,12 +57,14 @@ class TransactionController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Failed checkout cart');
         }
-        
     }
     public function all()
-    { 
-        //untuk admin view all
-        $transactions = Transaction::all();
-        // return view('transaction')->with('transactions',$transactions);
+    {
+        $transactions = DB::table('transactions as t')
+            ->selectRaw('DISTINCT t.transaction_id, t.created_at, t.user_id, u.username')
+            ->join('users as u', 't.user_id', '=', 'u.id')
+            ->get();
+
+        return view('pages.transaction', compact('transactions'));
     }
 }
