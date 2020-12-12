@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class ACLAuth
+class SimpleAuthorization
 {
     /**
      * Handle an incoming request.
@@ -14,14 +14,12 @@ class ACLAuth
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, ...$roles)
     {
-        if (Auth::guest())
-            return $next($request);
+        foreach ($roles as $role) {
+            if(Auth::user()->hasRole($role)) return $next($request);
+        }
 
-        if (Auth::user()->email_verified_at)
-            return $next($request);
-
-        return redirect(route('verification.notice'));
+        return $next(abort(404));
     }
 }

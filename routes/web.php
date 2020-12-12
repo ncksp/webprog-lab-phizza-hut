@@ -20,7 +20,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/pizza/{id}', 'PizzaController@detail')->name('pizza.detail');
 
 Route::group(['prefix' => '/', 'middleware' => ['auth']], function () {
-    Route::group(['prefix' => 'transaction'], function () {
+    Route::group(['prefix' => 'transaction', 'middleware' => ['authorization.simple:user']], function () {
         Route::get('/', 'TransactionController@all')->name('transaction.all');
         Route::get('history', 'TransactionController@history')->name('history.all');
         Route::get('history/{id}', 'TransactionController@historyDetail')->name('history.detail');
