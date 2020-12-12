@@ -20,7 +20,7 @@ class PizzaController extends Controller
         $this->middleware('authorization.simple:user,admin,guest')->only('show');
 
         $this->middleware('authorization.simple:admin')->only([
-            'store', 'update', 'destroy'
+            'store', 'update', 'destroy', 'create', 'edit'
         ]);
     }
 
