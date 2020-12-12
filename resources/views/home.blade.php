@@ -19,6 +19,9 @@
                 </div>
             </div>
         </form>
+
+        @include('layouts.alert')
+        
     </div>
 </div>
 @include('pages.section.dashboard-pizza')

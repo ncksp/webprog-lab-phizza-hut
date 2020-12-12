@@ -6,14 +6,12 @@ use App\Cart;
 use App\Http\Requests\CartRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
     public function index()
     {
         $userId = Auth::user()->id;
-
         //avoiding n+1 problem using with
         $carts = Cart::with('pizza')->where('user_id', $userId)->get();
 
@@ -34,7 +32,7 @@ class CartController extends Controller
             else
                 Cart::where($where)->update(['qty' => $exist->qty + $req->qty]);
 
-            return redirect()->back()->with('success', 'Success add product to cart');
+            return redirect(route('home'))->with('success', 'Success add product to cart');
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Failed add product to cart');
         }

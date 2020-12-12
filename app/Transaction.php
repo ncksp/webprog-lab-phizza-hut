@@ -6,8 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    protected $casts = [
+        'transaction_id' => 'string'
+    ];
+    
     protected $fillable = [
-        'user_id', 'pizza_id', 'qty'
+        'transaction_id', 'user_id', 'pizza_id', 'qty', 'created_at'
     ];
 
     public function pizza()
