@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pizza;
-use Illuminate\Http\Request;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -21,5 +21,12 @@ class HomeController extends Controller
             ->latest('created_at')->paginate(6);
         
         return view('home', compact('pizzas'));
+    }
+
+    public function users()
+    {
+        $users = User::where('role', 'user')->get();
+
+        return view('pages.users', compact('users'));
     }
 }

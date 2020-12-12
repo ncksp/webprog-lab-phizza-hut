@@ -23,7 +23,7 @@ Route::group(['prefix' => '/', 'middleware' => ['auth']], function () {
     Route::resource('pizza', 'PizzaController');
 
     Route::group(['middleware' => ['authorization.simple:admin']], function () {
-        Route::get('users', 'HomeController@index')->name('users.view');
+        Route::get('users', 'HomeController@users')->name('users.view');
         Route::get('/transaction', 'TransactionController@all')->name('transaction.all');
     });
 
