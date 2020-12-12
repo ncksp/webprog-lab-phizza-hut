@@ -18,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::resource('pizza', 'PizzaController');
+
 Route::group(['prefix' => '/', 'middleware' => ['auth']], function () {
     Route::resource('cart', 'CartController')->middleware('authorization.simple:user');
-    Route::resource('pizza', 'PizzaController');
 
     Route::group(['middleware' => ['authorization.simple:admin']], function () {
         Route::get('users', 'HomeController@users')->name('users.view');

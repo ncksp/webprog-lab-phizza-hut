@@ -16,6 +16,7 @@ class PizzaController extends Controller
         bisa juga make laravel permission punya si "spatie"
         cuma karna ini cuma sedikit jadi masih oke
         */
+        $this->middleware('auth')->except('show');
         $this->middleware('authorization.simple:user,admin,guest')->only('show');
 
         $this->middleware('authorization.simple:admin')->only([
