@@ -90,7 +90,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror"
+                                <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror"
                                     name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                 @error('phone')
@@ -102,16 +102,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
                             <div class="col-md-3">
                                 <input type="radio" class="@error('gender') is-invalid @enderror" name="gender"
                                     value="Male" required autocomplete="gender" autofocus>
-                                <label for="name" class="col-form-label text-md-right">{{ __('Male') }}</label>
+                                <label for="gender" class="col-form-label text-md-right">{{ __('Male') }}</label>
                             </div>
                             <div class="col-md-3">
                                 <input type="radio" class="@error('gender') is-invalid @enderror" name="gender"
                                     value="Female" required autocomplete="gender" autofocus>
-                                <label for="name" class="col-form-label text-md-right">{{ __('Female') }}</label>
+                                <label for="gender" class="col-form-label text-md-right">{{ __('Female') }}</label>
                             </div>
                             @error('gender')
                             <span class="invalid-feedback" role="alert">
