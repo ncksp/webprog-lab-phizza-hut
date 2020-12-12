@@ -45,7 +45,7 @@ class CartController extends Controller
             Cart::find($req->id)->delete();
             return redirect()->back()->with('success', "Success remove product <b>($req->name)</b> from cart");
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Failed add product to cart');
+            return redirect()->back()->with('error', 'Failed remove product to cart');
         }
     }
 
