@@ -17,7 +17,8 @@ class CreatePizzasTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('price');
-            $table->String('img');
+            $table->text('description');
+            $table->string('img');
             $table->timestamps();
         });
     }

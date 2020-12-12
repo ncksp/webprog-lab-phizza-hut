@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\cart;
+use App\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +10,7 @@ class CartController extends Controller
 {
     public function index(Request $req){ 
         $userId = $req->userId;
-        $carts = cart::where('userId',$userId)->get();
+        $carts = Cart::where('userId',$userId)->get();
         // return view('cart')->with('carts',$carts);
     }
     public function addToCart(Request $req){

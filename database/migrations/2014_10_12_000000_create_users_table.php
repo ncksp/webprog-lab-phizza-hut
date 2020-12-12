@@ -19,6 +19,17 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->text('address');
+            $table->string('phone');
+            $table->string('gender');
+
+            /*
+            bad practice for roles management
+            seharusnya make table role lagi lalu buat table permission untuk setiap role nya
+            tapi karna program masih simple, langsung di tembak aja di table wkwk
+            */
+            $table->string('role')->default("user"); 
+            
             $table->rememberToken();
             $table->timestamps();
         });

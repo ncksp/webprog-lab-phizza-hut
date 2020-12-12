@@ -2,22 +2,24 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+    <div class="header">
+        <h1>Our freshly made pizza!</h1>
+        <hr>
+        <form action="" method="get">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Pizza Name" name="keyword"
+                    aria-label="Recipient's username" value="{{Request::get('keyword')}}"
+                    aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    @if (Request::has('keyword'))
+                    <button class="btn btn-outline-danger" onclick="return window.location.href = `{{route('home')}}`"
+                        type="reset">Clear</button>
                     @endif
-
-                    {{ __('You are logged in!') }}
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
+@include('pages.section.dashboard-pizza')
 @endsection

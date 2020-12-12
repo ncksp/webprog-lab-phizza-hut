@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Auth::routes(['verify' => true]);
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/pizza/{id}', 'PizzaController@detail')->name('pizza.detail');
+
+Route::group(['prefix' => '/', 'middleware' => ['auth'], 'as' => 'dashboard'], function () {
 });
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
