@@ -14,10 +14,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $pizzas = Pizza::paginate(6);
+        $pizzas = Pizza::latest('created_at')->paginate(6);
 
         if(request()->query('keyword'))
-            $pizzas = Pizza::where('name', 'like', "%". request()->query('keyword')."%")->paginate(6);
+            $pizzas = Pizza::where('name', 'like', "%". request()->query('keyword')."%")
+            ->latest('created_at')->paginate(6);
         
         return view('home', compact('pizzas'));
     }

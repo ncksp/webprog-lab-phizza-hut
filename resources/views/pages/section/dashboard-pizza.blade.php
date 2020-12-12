@@ -7,8 +7,12 @@
             <div class="card-body">
                 <h5 class="card-title">{{$item->name}}</h5>
                 <p class="card-text font-weight-bold">Rp. {{$item->price}}</p>
-                <a href="{{route('pizza.detail', $item->id)}}" class="btn btn-primary">See more</a>
+                <a href="{{route('pizza.show', $item->id)}}" class="btn btn-primary">See more</a>
             </div>
+
+            @if (Auth::check() && Auth::user()->hasRole('admin'))
+                @include('pages.section.pizza-management-option')
+            @endif
         </div>
         @endforeach
     </div>

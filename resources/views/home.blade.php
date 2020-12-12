@@ -20,8 +20,11 @@
             </div>
         </form>
 
+        @if (Auth::check() && Auth::user()->hasRole('admin'))
+            <a href="{{route('pizza.create')}}" class="btn btn-success mb-3">Add new pizza</a>
+        @endif
+
         @include('layouts.alert')
-        
     </div>
 </div>
 @include('pages.section.dashboard-pizza')

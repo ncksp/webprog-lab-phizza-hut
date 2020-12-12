@@ -21,7 +21,9 @@
                 user/...
                 admin/...
                 
-                tapi karna ga terlalu ribet jadi ini masih oke lah hehehe
+                tapi karna ga terlalu ribet jadi ini masih oke hehehe
+
+                **berkalu untuk semua view yang ada pengecekan role**
                 --}}
                 @if (Auth::check() && Auth::user()->hasRole("user"))
                     @include('pages.section.pizza-detail-buy')
