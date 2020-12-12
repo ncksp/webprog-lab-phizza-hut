@@ -14,7 +14,7 @@
                 <div class="card-body">
                 <p class="card-text"><b>Username</b> : {{$user->username}}</p>
                 <p class="card-text"><b>Email</b> : {{$user->email}}</p>
-                <p class="card-text"><b>Address</b> : {{$user->address}} lore</p>
+                <p class="card-text"><b>Address</b> : {{$user->address}}</p>
                 <p class="card-text"><b>Phone Number</b> : {{$user->phone}}</p>
                 <p class="card-text"><b>Gender</b> : {{$user->gender}}</p>
                 </div>
