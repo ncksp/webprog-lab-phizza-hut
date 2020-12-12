@@ -19,5 +19,9 @@ Auth::routes(['verify' => true]);
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/pizza/{id}', 'PizzaController@detail')->name('pizza.detail');
 
-Route::group(['prefix' => '/', 'middleware' => ['auth'], 'as' => 'dashboard'], function () {
+Route::group(['prefix' => '/', 'middleware' => ['auth']], function () {
+    Route::get('history', 'HomeController@index')->name('history.all');
+    Route::get('transaction', 'HomeController@index')->name('transaction.all');
+    Route::get('cart', 'HomeController@index')->name('cart.view');
+    Route::get('users', 'HomeController@index')->name('users.view');
 });

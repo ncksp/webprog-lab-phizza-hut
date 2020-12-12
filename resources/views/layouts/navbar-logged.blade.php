@@ -1,3 +1,8 @@
+@if (Auth::user()->hasRole('user'))
+    @include('layouts.navbar-user')
+@else
+    @include('layouts.navbar-admin')
+@endif
 <li class="nav-item dropdown">
     <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false" v-pre>
