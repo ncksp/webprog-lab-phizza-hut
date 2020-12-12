@@ -13,6 +13,7 @@ class PizzaController extends Controller
     {
         /*ngebuat method beda2 middlewarenya
         harusnya lebih bagus kalo make role permission lalu dibuat table kalo udh banyak methodnya
+        bisa juga make laravel permission punya si "spatie"
         cuma karna ini cuma sedikit jadi masih oke
         */
         $this->middleware('authorization.simple:user,admin,guest')->only('show');
@@ -48,7 +49,7 @@ class PizzaController extends Controller
 
             return redirect(route('home'))->with('success', 'Success add new pizza');
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', $th);
+            return redirect()->back()->with('error', 'Failed add new pizza');
         }
     }
 

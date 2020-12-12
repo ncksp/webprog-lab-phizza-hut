@@ -17,6 +17,7 @@ class SimpleAuthorization
      */
     public function handle($request, Closure $next, ...$roles)
     {
+        //ini cuma ngecek isi dari isi si variadic / splat parameter dari $roles
         foreach ($roles as $role) {
             if(strtoupper($role) === $this->GUEST) return $next($request);
             
@@ -24,6 +25,7 @@ class SimpleAuthorization
             
             if(Auth::user()->hasRole($role)) return $next($request);
         }
+        
         return $next(abort(404));
     }
 }

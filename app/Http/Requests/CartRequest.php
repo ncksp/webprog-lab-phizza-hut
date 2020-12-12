@@ -14,9 +14,7 @@ class CartRequest extends FormRequest
      */
     public function authorize()
     {
-        if(Auth::user()->hasRole("user")) return true;
-
-        return false;
+        return Auth::user()->hasRole("user");
     }
 
     /**

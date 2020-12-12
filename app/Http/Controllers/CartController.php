@@ -17,7 +17,7 @@ class CartController extends Controller
 
         return view('pages.cart', compact('carts'));
     }
-    
+
     public function store(CartRequest $req)
     {
         $where = [
@@ -36,7 +36,6 @@ class CartController extends Controller
         } catch (\Throwable $th) {
             return redirect()->back()->with('error', 'Failed add product to cart');
         }
-        
     }
 
     public function destroy(Request $req)
@@ -45,18 +44,22 @@ class CartController extends Controller
             Cart::find($req->id)->delete();
             return redirect()->back()->with('success', "Success remove product <b>($req->name)</b> from cart");
         } catch (\Throwable $th) {
-            return redirect()->back()->with('error', 'Failed remove product to cart');
+            return redirect()->back()->with('error', 'Failed remove product from cart');
         }
     }
 
     public function update(CartRequest $req)
     {
-        $where = [
-            ['user_id', $req->user_id],
-            ['pizza_id', $req->pizza_id]
-        ];
+        try {
+            $where = [
+                ['user_id', $req->user_id],
+                ['pizza_id', $req->pizza_id]
+            ];
 
-        Cart::where($where)->update(['qty' => $req->qty]);
-        return redirect()->back()->with('success', "Success update quantity product <b>($req->name)</b> in cart");
+            Cart::where($where)->update(['qty' => $req->qty]);
+            return redirect()->back()->with('success', "Success update quantity product <b>($req->name)</b> in cart");
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', "Failed update quantity product <b>($req->name)</b> in cart");
+        }
     }
 }
