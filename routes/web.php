@@ -22,6 +22,7 @@ Route::get('/pizza/{id}', 'PizzaController@detail')->name('pizza.detail');
 Route::group(['prefix' => '/', 'middleware' => ['auth']], function () {
     Route::get('history', 'HomeController@index')->name('history.all');
     Route::get('transaction', 'HomeController@index')->name('transaction.all');
-    Route::get('cart', 'HomeController@index')->name('cart.view');
+    Route::resource('cart', 'CartController');
+    Route::resource('pizza', 'PizzaController');
     Route::get('users', 'HomeController@index')->name('users.view');
 });

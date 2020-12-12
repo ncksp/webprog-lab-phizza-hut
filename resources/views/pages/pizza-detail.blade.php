@@ -26,7 +26,7 @@
                 @if (Auth::check() && Auth::user()->hasRole("user"))
                     @include('pages.section.pizza-detail-buy')
                 @endif
-                <a href="{{route('home')}}">Back</a>
+                <a class="align-self-end" href="{{route('home')}}">Back</a>
             </div>
         </div>
     </div>

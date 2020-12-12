@@ -40,4 +40,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function hasRole($role){
         return $this->role === $role;
     }
+
+    public function carts(){
+        return $this->hasMany('App\Cart');
+    }
 }
